@@ -1,0 +1,28 @@
+<!-- Start Add Photo Section -->
+<div class="createPage">
+  <h2>Add photo</h2>
+  <!-- Start Add Photo Form -->
+  <form action="/pet/create" method="post">
+    <p>
+      <input type="text" name="name" placeholder="Name" value="{{petData.name}}" />
+    </p>
+
+    <p>
+      <input type="number" name="age" placeholder="Age" value="{{petData.age}}" />
+    </p>
+
+    <p>
+      <textarea type="text" name="description" placeholder="Description" value="{{petData.description}}"></textarea>
+    </p>
+
+    <p>
+      <input type="text" name="location" value="{{petData.location}}" placeholder="Location" />
+    </p>
+
+    <p>
+      <input type="text" name="imageUrl" value="{{petData.imageUrl}}" placeholder="Link to image" />
+    </p>
+    <!-- Add Photo Button -->
+    <button class="add-btn" type="submit">Add Photo</button>
+  </form>
+</div>
