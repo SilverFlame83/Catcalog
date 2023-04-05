@@ -120,12 +120,35 @@ router.post("/edit/:id", isUser(), async (req, res) => {
         location: req.body.location,
       },
     };
-    res.render('edit', ctx)
+    res.render("edit", ctx);
   }
 });
 
-router.all('*', (req, res) => {
-  res.render('404')
-})
+router.get("/profile", async (req, res) => {
+  const pets = await req.storage.getAllPets();
+  let username = "";
+  let email = "";
+  let image = [];
+  const userId = req.user._id;
+
+  for (const pet of pets) {
+    if (userId == pet.owner._id) {
+      if (pet.imageUrl) {
+        //console.log(pet._id);
+        image.push({ imageUrl: pet.imageUrl, imageId: pet._id });
+      }
+      username = pet.owner.username;
+      email = pet.owner.email;
+    }
+  }
+
+  //console.log(profileInf0)
+
+  res.render("profile", { username, email, image });
+});
+
+router.all("*", (req, res) => {
+  res.render("404");
+});
 
 module.exports = router;
